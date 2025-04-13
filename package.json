@@ -1,0 +1,36 @@
+{
+  "name": "ximagemcp",
+  "version": "1.0.0",
+  "main": "server.js",
+  "bin": {
+    "xImageMCP": "cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node cli.js"
+  },
+  "keywords": [
+    "image",
+    "resize",
+    "mcp",
+    "sharp",
+    "cli"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "MCP server for image resizing",
+  "dependencies": {
+    "sharp": "^0.34.1",
+    "yargs": "^17.7.2",
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "express": "^4.18.2"
+  },
+  "type": "module",
+  "files": [
+    "cli.js",
+    "server.js"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
