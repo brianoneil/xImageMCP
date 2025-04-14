@@ -35,20 +35,20 @@ server.registerTool(
       const { imagePath } = params;
       try {
         logger.info('Resizing image to 2x', { imagePath });
-        
+
         const metadata = await sharp(imagePath).metadata();
         const outputPath = path.join(
           path.dirname(imagePath),
           `${path.basename(imagePath, path.extname(imagePath))}_2x${path.extname(imagePath)}`
         );
-        
+
         await sharp(imagePath)
           .resize({
             width: Math.round(metadata.width! * 2),
             height: Math.round(metadata.height! * 2),
           })
           .toFile(outputPath);
-        
+
         logger.info('Image resized successfully', { outputPath });
         return outputPath;
       } catch (error) {
@@ -77,20 +77,20 @@ server.registerTool(
       const { imagePath } = params;
       try {
         logger.info('Resizing image to 3x', { imagePath });
-        
+
         const metadata = await sharp(imagePath).metadata();
         const outputPath = path.join(
           path.dirname(imagePath),
           `${path.basename(imagePath, path.extname(imagePath))}_3x${path.extname(imagePath)}`
         );
-        
+
         await sharp(imagePath)
           .resize({
             width: Math.round(metadata.width! * 3),
             height: Math.round(metadata.height! * 3),
           })
           .toFile(outputPath);
-        
+
         logger.info('Image resized successfully', { outputPath });
         return outputPath;
       } catch (error) {
@@ -111,17 +111,17 @@ server.registerResource(
       const { path: imagePath } = params;
       try {
         logger.info('Getting image info', { imagePath });
-        
+
         const metadata = await sharp(imagePath).metadata();
         const stats = await fs.stat(imagePath);
-        
+
         const info = {
           width: metadata.width,
           height: metadata.height,
           format: metadata.format,
           size: stats.size,
         };
-        
+
         logger.info('Image info retrieved successfully', { info });
         return info;
       } catch (error) {
@@ -133,9 +133,12 @@ server.registerResource(
 );
 
 // Start the server
-server.start().then(() => {
-  logger.info('MCP server started successfully');
-}).catch((error: Error) => {
-  logger.error('Failed to start MCP server', { error });
-  process.exit(1);
-});
+server
+  .start()
+  .then(() => {
+    logger.info('MCP server started successfully');
+  })
+  .catch((error: Error) => {
+    logger.error('Failed to start MCP server', { error });
+    process.exit(1);
+  });

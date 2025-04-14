@@ -2,7 +2,7 @@ export enum LogLevel {
   DEBUG = 'DEBUG',
   INFO = 'INFO',
   WARN = 'WARN',
-  ERROR = 'ERROR'
+  ERROR = 'ERROR',
 }
 
 export class Logger {
@@ -11,4 +11,4 @@ export class Logger {
   info(message: string, metadata?: Record<string, any>): void;
   warn(message: string, metadata?: Record<string, any>): void;
   error(message: string, metadata?: Record<string, any>): void;
-} 
+}
